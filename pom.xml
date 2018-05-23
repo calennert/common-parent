@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.calennert</groupId>
+	<artifactId>common-parent</artifactId>
+	<version>1</version>
+	<packaging>pom</packaging>
+
+	<name>common-parent</name>
+	<description>Common parent POM for Maven-based projects</description>
+	<url>https://github.com/calennert/common-parent</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>calennert</id>
+			<name>Chris Lennert</name>
+			<email>2062708+calennert@users.noreply.github.com</email>
+			<url>https://github.com/calennert/common-parent</url>
+		</developer>
+	</developers>
+
+	<scm>
+		<tag>master</tag>
+		<connection>scm:git:git@github.com:calennert/common-parent.git</connection>
+		<developerConnection>scm:git:git@github.com:calennert/common-parent.git</developerConnection>
+		<url>https://github.com/calennert/common-parent.git</url>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<version.java>1.8</version.java>
+
+		<required.maven.version>[3.5,)</required.maven.version>
+		<required.java.version>[1.8.0-161,)</required.java.version>
+
+		<!-- Java EE -->
+		<version.jboss-javaee-7.0>1.1.1.Final</version.jboss-javaee-7.0>
+		<version.spec.ejb>3.2</version.spec.ejb>
+
+		<!-- hibernate ecosystem -->
+		<version.hibernate>5.2.17.Final</version.hibernate>
+		<version.hibernate-core>${version.hibernate}</version.hibernate-core>
+		<version.hibernate-jpamodelgen>${version.hibernate}</version.hibernate-jpamodelgen>
+		<version.hibernate-enhance-maven-plugin>${version.hibernate}</version.hibernate-enhance-maven-plugin>
+		<version.hibernate-validator>6.0.9.Final</version.hibernate-validator>
+
+		<!-- JSF and other useful web libraries -->
+		<version.primefaces>6.2</version.primefaces>
+		<version.omnifaces>2.6.9</version.omnifaces>
+		<version.font-awesome>4.7.0</version.font-awesome>
+		<version.typicons>2.0.7</version.typicons>
+		<version.cas-api>1.0.6</version.cas-api>
+
+		<!-- for RESTful web services -->
+		<version.swagger-annotations>1.5.18</version.swagger-annotations>
+		<version.swagger-jaxrs>${version.swagger-annotations}</version.swagger-jaxrs>
+
+		<!-- additional libraries -->
+		<version.guava>25.0-jre</version.guava>
+		<version.gson>2.8.4</version.gson>
+
+		<!-- spring boot -->
+		<version.spring-boot>2.0.1.RELEASE</version.spring-boot>
+
+		<!-- crypto -->
+		<version.bcprov-jdk15on>1.59</version.bcprov-jdk15on>
+		<version.bcpkix-jdk15on>${version.bcprov-jdk15on}</version.bcpkix-jdk15on>
+		<version.bcmail-jdk15on>${version.bcprov-jdk15on}</version.bcmail-jdk15on>
+
+		<!-- h2 database, used mainly for jpa integration tests -->
+		<version.h2>1.4.197</version.h2>
+
+		<!-- text templating, PDF generation, html processing -->
+		<version.freemarker>2.3.28</version.freemarker>
+		<version.pdfbox>2.0.9</version.pdfbox>
+		<version.jsoup>1.11.3</version.jsoup>
+
+		<version.groovy-all>2.4.15</version.groovy-all>
+
+		<!-- UML diagram generation -->
+		<version.plantuml>8059</version.plantuml>
+
+		<!-- graphics -->
+		<version.batik-svggen>1.9.1</version.batik-svggen>
+		<version.batik-svg-dom>${version.batik-svggen}</version.batik-svg-dom>
+		<version.xmlgraphics-commons>2.2</version.xmlgraphics-commons>
+		<version.filters>2.0.235-1</version.filters>
+		<version.jogl>2.3.2</version.jogl>
+		<version.twelvemonkeys>3.3.2</version.twelvemonkeys>
+
+		<!-- math -->
+		<version.commons-math3>3.6.1</version.commons-math3>
+		<version.ejml-all>0.34</version.ejml-all>
+
+		<!-- unit and integration testing -->
+		<version.junit>4.12</version.junit>
+		<version.arquillian-bom>1.4.0.Final</version.arquillian-bom>
+		<version.wildfly-dist>10.1.0.Final</version.wildfly-dist>
+		<version.wildfly-arquillian-container-managed>2.1.0.Final</version.wildfly-arquillian-container-managed>
+		<version.arquillian-jacoco>1.0.0.Alpha9</version.arquillian-jacoco>
+
+		<!-- maven plugin development -->
+		<version.maven-plugin-api>3.5.3</version.maven-plugin-api>
+		<version.maven-plugin-annotations>3.5.1</version.maven-plugin-annotations>
+
+		<!-- maven plugin versions -->
+		<version.maven-antrun-plugin>1.8</version.maven-antrun-plugin>
+		<version.maven-assembly-plugin>3.1.0</version.maven-assembly-plugin>
+		<version.maven-clean-plugin>3.0.0</version.maven-clean-plugin>
+		<version.maven-compiler-plugin>3.7.0</version.maven-compiler-plugin>
+		<version.maven-dependency-plugin>3.1.0</version.maven-dependency-plugin>
+		<version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>
+		<version.maven-enforcer-plugin>1.4.1</version.maven-enforcer-plugin>
+		<version.maven-ear-plugin>3.0.0</version.maven-ear-plugin>
+		<version.maven-ejb-plugin>3.0.0</version.maven-ejb-plugin>
+		<version.maven-install-plugin>2.5.2</version.maven-install-plugin>
+		<version.maven-jar-plugin>3.0.2</version.maven-jar-plugin>
+		<version.maven-javadoc-plugin>3.0.0</version.maven-javadoc-plugin>
+		<version.maven-plugin-plugin>3.5.1</version.maven-plugin-plugin>
+		<version.maven-processor-plugin>3.3.3</version.maven-processor-plugin>
+		<version.maven-project-info-reports-plugin>2.9</version.maven-project-info-reports-plugin>
+		<version.maven-release-plugin>2.5.3</version.maven-release-plugin>
+		<version.maven-resources-plugin>3.0.2</version.maven-resources-plugin>
+		<version.maven-shade-plugin>3.1.1</version.maven-shade-plugin>
+		<version.maven-site-plugin>3.7</version.maven-site-plugin>
+		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+		<version.maven-surefire-plugin>2.21.0</version.maven-surefire-plugin>
+		<version.maven-war-plugin>3.2.0</version.maven-war-plugin>
+		<version.build-helper-maven-plugin>3.0.0</version.build-helper-maven-plugin>
+		<version.plantuml-maven-plugin>1.2</version.plantuml-maven-plugin>
+		<version.exec-maven-plugin>1.6.0</version.exec-maven-plugin>
+		<version.download-maven-plugin>1.4.0</version.download-maven-plugin>
+		<version.jacoco-maven-plugin>0.8.0</version.jacoco-maven-plugin>
+		<version.groovy-maven-plugin>2.0</version.groovy-maven-plugin>
+		<version.wildfly-maven-plugin>1.2.1.Final</version.wildfly-maven-plugin>
+	</properties>
+
+	<profiles>
+		<profile>
+			<!-- WHEN TO USE: include this profile when deploying library projects 
+				to a repo -->
+			<id>build-javadocs-jar</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<!-- WHEN TO USE: include this profile when deploying library projects 
+				to a repo -->
+			<id>build-sources-jar</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<!-- WHEN TO USE: include this profile in your next maven build if you 
+				add a new entity class or modify an existing one to a JPA library. This ensures 
+				that the meta-model classes in src/main/generated are up-to-date. -->
+			<id>generate-meta-model-classes</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.bsc.maven</groupId>
+						<artifactId>maven-processor-plugin</artifactId>
+						<version>${version.maven-processor-plugin}</version>
+						<executions>
+							<execution>
+								<id>process</id>
+								<goals>
+									<goal>process</goal>
+								</goals>
+								<phase>generate-sources</phase>
+								<configuration>
+									<processors>
+										<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+									</processors>
+									<outputDirectory>src/main/generated</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.hibernate</groupId>
+								<artifactId>hibernate-jpamodelgen</artifactId>
+								<version>${version.hibernate-jpamodelgen}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>arquillian-wildfly-managed</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>process-test-classes</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>org.wildfly</groupId>
+											<artifactId>wildfly-dist</artifactId>
+											<version>${version.wildfly-dist}</version>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${project.build.directory}</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<environmentVariables>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly-dist}</JBOSS_HOME>
+							</environmentVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.wildfly.arquillian</groupId>
+					<artifactId>wildfly-arquillian-container-managed</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+	</profiles>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Java EE APIs -->
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-7.0</artifactId>
+				<version>${version.jboss-javaee-7.0}</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- JSF and other useful web libraries -->
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>${version.primefaces}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.omnifaces</groupId>
+				<artifactId>omnifaces</artifactId>
+				<version>${version.omnifaces}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>font-awesome</artifactId>
+				<version>${version.font-awesome}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>typicons</artifactId>
+				<version>${version.typicons}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- additional libraries -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${version.guava}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${version.gson}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${version.hibernate-core}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${version.hibernate-validator}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>${version.bcprov-jdk15on}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcpkix-jdk15on</artifactId>
+				<version>${version.bcpkix-jdk15on}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcmail-jdk15on</artifactId>
+				<version>${version.bcmail-jdk15on}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${version.h2}</version>
+			</dependency>
+
+			<!-- graphics -->
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-svggen</artifactId>
+				<version>${version.batik-svggen}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-svg-dom</artifactId>
+				<version>${version.batik-svg-dom}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>xmlgraphics-commons</artifactId>
+				<version>${version.xmlgraphics-commons}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jhlabs</groupId>
+				<artifactId>filters</artifactId>
+				<version>${version.filters}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jogamp.gluegen</groupId>
+				<artifactId>gluegen-rt-main</artifactId>
+				<version>${version.jogl}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jogamp.jogl</groupId>
+				<artifactId>jogl-all-main</artifactId>
+				<version>${version.jogl}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.twelvemonkeys.bom</groupId>
+				<artifactId>bom</artifactId>
+				<version>${version.twelvemonkeys}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- unit and integration testing -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian-bom}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.wildfly.arquillian</groupId>
+				<artifactId>wildfly-arquillian-container-managed</artifactId>
+				<version>${version.wildfly-arquillian-container-managed}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- WildFly CAS extension (Carl Harris, Virginia Tech) -->
+			<dependency>
+				<groupId>org.soulwing.cas</groupId>
+				<artifactId>cas-api</artifactId>
+				<version>${version.cas-api}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- for RESTful web services -->
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-annotations</artifactId>
+				<version>${version.swagger-annotations}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-jaxrs</artifactId>
+				<version>${version.swagger-jaxrs}</version>
+			</dependency>
+
+			<!-- text templating and PDF generation -->
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${version.freemarker}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.pdfbox</groupId>
+				<artifactId>pdfbox</artifactId>
+				<version>${version.pdfbox}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${version.jsoup}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sourceforge.plantuml</groupId>
+				<artifactId>plantuml</artifactId>
+				<version>${version.plantuml}</version>
+			</dependency>
+
+			<!-- math -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-math3</artifactId>
+				<version>${version.commons-math3}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ejml</groupId>
+				<artifactId>ejml-all</artifactId>
+				<version>${version.ejml-all}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${version.maven-antrun-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${version.maven-assembly-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${version.maven-clean-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.maven-compiler-plugin}</version>
+					<configuration>
+						<source>${version.java}</source>
+						<target>${version.java}</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${version.maven-dependency-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${version.maven-deploy-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>${version.maven-ear-plugin}</version>
+					<configuration>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-ejb-plugin</artifactId>
+					<version>${version.maven-ejb-plugin}</version>
+					<configuration>
+						<ejbVersion>${version.spec.ejb}</ejbVersion>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${version.maven-enforcer-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${version.maven-install-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${version.maven-jar-plugin}</version>
+					<configuration>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${version.maven-javadoc-plugin}</version>
+					<configuration>
+						<links>
+							<link>https://docs.oracle.com/javase/8/docs/api/</link>
+							<link>https://docs.oracle.com/javaee/7/api/</link>
+							<link>https://google.github.io/guava/releases/${version.guava}/api/docs/</link>
+						</links>
+						<sourceFileExcludes>
+							<!-- exclude meta-model classes for projects that have them -->
+							<exclude>**/*_.java</exclude>
+						</sourceFileExcludes>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-plugin-plugin</artifactId>
+					<version>${version.maven-plugin-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>${version.maven-project-info-reports-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${version.maven-release-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${version.maven-resources-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>${version.maven-shade-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${version.maven-site-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${version.maven-source-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${version.maven-surefire-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${version.maven-war-plugin}</version>
+					<configuration>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${version.build-helper-maven-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>com.github.jeluard</groupId>
+					<artifactId>plantuml-maven-plugin</artifactId>
+					<version>${version.plantuml-maven-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>${version.exec-maven-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>com.googlecode.maven-download-plugin</groupId>
+					<artifactId>download-maven-plugin</artifactId>
+					<version>${version.download-maven-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${version.jacoco-maven-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.gmaven</groupId>
+					<artifactId>groovy-maven-plugin</artifactId>
+					<version>${version.groovy-maven-plugin}</version>
+
+					<dependencies>
+						<dependency>
+							<groupId>org.codehaus.groovy</groupId>
+							<artifactId>groovy-all</artifactId>
+							<version>${version.groovy-all}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<plugin>
+					<groupId>org.hibernate.orm.tooling</groupId>
+					<artifactId>hibernate-enhance-maven-plugin</artifactId>
+					<version>${version.hibernate-enhance-maven-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-maven-plugin</artifactId>
+					<version>${version.wildfly-maven-plugin}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>${required.maven.version}</version>
+								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>${required.java.version}</version>
+								</requireJavaVersion>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
